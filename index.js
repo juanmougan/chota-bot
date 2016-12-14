@@ -54,7 +54,7 @@ let getTitle = (callback) => {
 }
 
 server.get("/movie", (req, res, next) => {
-	//getTitle((titleResult) => {res.send(200, {title : titleResult })});
+	getTitle((titleResult) => {res.send(200, {title : titleResult })});
 });
 
 server.listen(process.env.PORT || 8080, function() {
