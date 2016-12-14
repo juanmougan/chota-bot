@@ -39,7 +39,7 @@ let getTitle = (callback) => {
 				}
 				i++;
 			}
-			if(!replaceDone) { titleWords[0] = "chota" }
+			if(!replaceDone) { titleWords[0] = "Chota" }
 			if(/^(el|la)\schota$/.test(titleWords.join(" ").toLowerCase())) {
 				getTitle(callback)
 			} else {
@@ -58,9 +58,10 @@ server.listen(process.env.PORT || 8080, function() {
 	console.log('%s listening at %s', server.name, server.url);
 });
 
-bot.onText(/\/movie/, function (msg, match) {
-    let chatId = msg.chat.id;
-    let resp = match[1]; // the captured "whatever"
-    
-    getTitle((titleResult) => {bot.sendMessage(chatId, titleResult);})
+bot.onText(/^\/movie$/, function (msg, match) {
+    getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+});
+
+bot.onText(/\/echo (.+)/, function (msg, match) {
+    bot.sendMessage(msg.chat.id, match[1]);
 });
