@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  	"start" : "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "figui",
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^1.6.3",
+    "node-telegram-bot-api": "^0.24.0",
     "restify": "^4.3.0"
   }
 }
