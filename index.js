@@ -1,6 +1,5 @@
 let restify = require('restify');
 let fetch = require('node-fetch');
-let bot = require('./telegram-bot');
 
 let server = restify.createServer({
 	name: 'chota-bot',
