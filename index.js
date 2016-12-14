@@ -62,6 +62,6 @@ bot.onText(/^\/movie$/, function (msg) {
     getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
 });
 
-bot.onText(/\/echo +w/, function (msg, match) {
-    bot.sendMessage(msg.chat.id, match.join(" "));
+bot.onText(/\/echo (.+)/, function (msg, match) {
+    bot.sendMessage(msg.chat.id, match[1]);
 });
