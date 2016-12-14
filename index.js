@@ -44,7 +44,7 @@ let getTitle = (callback) => {
 			}
 			if(!replaceDone) { titleWords[0] = "chota" }
 			if(/^(el|la)\schota$/.test(titleWords.join(" ").toLowerCase())) {
-				getTitle(res)
+				getTitle(callback)
 			} else {
 				callback(titleWords.join(" "));
 			}
@@ -54,7 +54,7 @@ let getTitle = (callback) => {
 }
 
 server.get("/movie", (req, res, next) => {
-	getTitle((titleResult) => {res.send(200, {title : titleResult })});
+	//getTitle((titleResult) => {res.send(200, {title : titleResult })});
 });
 
 server.listen(process.env.PORT || 8080, function() {
