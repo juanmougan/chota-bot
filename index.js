@@ -39,7 +39,7 @@ let getTitle = (callback) => {
 				}
 				i++;
 			}
-			if(!replaceDone) { titleWords[0] = "Chota" }
+			if(!replaceDone || titleWords.length == 1) { titleWords[0] = "Chota" }
 			if(/^(el|la)\schota$/.test(titleWords.join(" ").toLowerCase())) {
 				getTitle(callback)
 			} else {
