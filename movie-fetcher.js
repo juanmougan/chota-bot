@@ -15,7 +15,7 @@ class MovieFetcher {
     
     getTitle(callback)  {
         let url = this.baseUrl + `&page=${this.random(10, 1)}`;
-        let query = this.query[random(this.query.length, 0)];
+        let query = this.query[this.random(this.query.length, 0)];
         url += `&query=${Object.keys(query)[0]}`;
         fetch(url)
             .then((res) => { return res.json() })
@@ -29,7 +29,7 @@ class MovieFetcher {
                     let index = this.random(0, titleWords.length);
                     if(this.stopword.indexOf(titleWords[index].toLowerCase()) == -1) {
                         replaceDone = true;
-                        titleWords[index] = Object.keys(query)[0][0];
+                        titleWords[index] = query[Object.keys(query)[0]];
                         break;
                     }
                     i++;
