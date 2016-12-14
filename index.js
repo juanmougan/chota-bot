@@ -46,7 +46,7 @@ let getTitle = (callback) => {
 			if(/^(el|la)\schota$/.test(titleWords.join(" ").toLowerCase())) {
 				getTitle(callback)
 			} else {
-				callback(titleWords.join(" "));
+				callback(titleWords.join(" ") + ` - (${title}})`);
 			}
 
 		})
