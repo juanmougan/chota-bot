@@ -61,7 +61,3 @@ server.listen(process.env.PORT || 8080, function() {
 bot.onText(/^\/movie$/, function (msg, match) {
     getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
 });
-
-bot.onText(/\/echo (.+)/, function (msg, match) {
-    bot.sendMessage(msg.chat.id, match[1]);
-});
