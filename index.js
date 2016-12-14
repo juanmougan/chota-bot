@@ -12,6 +12,10 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
+server.get("/", (req, res, next) => {
+    res.redirect(302, "/movie", next);
+});
+
 server.get("/movie", (req, res, next) => {
     movieFetcher.getTitle((titleResult) => { res.send(200, {title : titleResult }) });
 });
