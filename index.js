@@ -61,7 +61,7 @@ server.listen(process.env.PORT || 8080, function() {
 	console.log('%s listening at %s', server.name, server.url);
 });
 
-bot.onText(/\/movie$, function (msg, match) {
+bot.onText(/\/movie/, function (msg, match) {
 	// 'msg' is the received Message from Telegram
 	// 'match' is the result of executing the regexp above on the text content
 	// of the message
