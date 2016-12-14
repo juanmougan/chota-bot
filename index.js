@@ -58,6 +58,10 @@ server.listen(process.env.PORT || 8080, function() {
 	console.log('%s listening at %s', server.name, server.url);
 });
 
-bot.onText(/^\/movie$/, function (msg, match) {
+bot.onText(/^\/movie$/, function (msg) {
     getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+});
+
+bot.onText(/\/echo +w/, function (msg, match) {
+    bot.sendMessage(msg.chat.id, match.join(" "));
 });
