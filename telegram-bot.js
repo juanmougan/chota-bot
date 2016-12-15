@@ -13,7 +13,7 @@ bot.onText(/^\/chota$/, function (msg) {
 });
 
 bot.onText(/\/ask (.+)/, function (msg) {
-    bot.sendMessage(msg.chat.id, "Tu hermana!!!");
+    bot.sendMessage(msg.chat.id, "Tu hermana \xF0\x9F\x98\x81");
 });
 
 bot.onText(/\/echo (.+)/, function (msg, match) {
