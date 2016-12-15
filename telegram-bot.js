@@ -8,6 +8,10 @@ bot.onText(/^\/movie$/, function (msg) {
     movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
 });
 
+bot.onText(/^\/chota$/, function (msg) {
+    movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+});
+
 bot.onText(/\/echo (.+)/, function (msg, match) {
     bot.sendMessage(msg.chat.id, match[1]);
 });
