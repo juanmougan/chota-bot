@@ -12,6 +12,10 @@ bot.onText(/^\/chota$/, function (msg) {
     movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
 });
 
+bot.onText(/^\/ask$/, function (msg) {
+    bot.sendMessage(msg.chat.id, "Tu hermana :)");}
+});
+
 bot.onText(/\/echo (.+)/, function (msg, match) {
     bot.sendMessage(msg.chat.id, match[1]);
 });
