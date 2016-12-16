@@ -35,7 +35,7 @@ class MovieFetcher {
                     i++;
                 }
                 if(!replaceDone || titleWords.length == 1) { titleWords[0] = "Chota" }
-                if(/^(el|la|lo|los|las|se|le|les)\s(chota|choto)$/.test(titleWords.join(" ").toLowerCase())) {
+                if(/^(el|la|lo|los|las|se|le|les|un)\s(chota|choto)$/.test(titleWords.join(" ").toLowerCase())) {
                     this.getTitle(callback)
                 } else {
                     callback(titleWords.join(" ") + ` - (${title})`);
