@@ -6,7 +6,7 @@ var isStopWord = (word) => {
 };
 
 var isArticle = (word) => {
-    let article = Object.keys(articles).find((k) => {return k == word})
+    let article = Object.keys(articles).find((k) => {return k == word.toLowerCase()})
     return (article) ? true : false;
 };
 
@@ -20,7 +20,7 @@ var findChotoGender = (titleWords, wordIndex) => {
 };
 
 var random = (min, max) => {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 module.exports = {
