@@ -1,6 +1,5 @@
 let restify = require('restify');
-let MovieFetcher = require("./movie-fetcher");
-let movieFetcher = new MovieFetcher();
+let movieFetcher = require("./movie-fetcher");
 require('./telegram-bot');
 
 let server = restify.createServer({
@@ -17,7 +16,7 @@ server.get("/", (req, res, next) => {
 });
 
 server.get("/movie", (req, res, next) => {
-    movieFetcher.getTitle((titleResult) => { res.send(200, {title : titleResult }) });
+    movieFetcher.getTitle((err)=> {res.send(500, err)}, (titleResult) => { res.send(200, {title : titleResult }) });
 });
 
 server.listen(process.env.PORT || 8080, function() {

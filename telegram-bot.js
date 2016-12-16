@@ -1,20 +1,19 @@
 let TelegramBot = require('node-telegram-bot-api');
-let MovieFetcher = require("./movie-fetcher");
-let movieFetcher = new MovieFetcher();
+let movieFetcher = require("./movie-fetcher");
 let utils = require('./utils');
 
 let bot = new TelegramBot('311477110:AAEPYL1lz75Gh52NgJfVbhwYbNnR56rqtIM', { polling: true });
-
+let errorHanler = (err) => { bot.sendMessage(msg.chat.id, "Me siento mal, te contesto cuando me recupere");}
 
 bot.onText(/^\/movie$/, function (msg) {
-    movieFetcher.getTitle((titleResult) => {
+    movieFetcher.getTitle(errorHanler, (titleResult) => {
         console.log(`Responding /movie to ${msg.chat.id} with : ${titleResult}`); 
         bot.sendMessage(msg.chat.id, titleResult);
     });
 });
 
 bot.onText(/^\/chota$/, function (msg) {
-    movieFetcher.getTitle((titleResult) => {
+    movieFetcher.getTitle(errorHanler, (titleResult) => {
         console.log(`Responding /chota to ${msg.chat.id} with : ${titleResult}`);
         bot.sendMessage(msg.chat.id, titleResult);
     })
