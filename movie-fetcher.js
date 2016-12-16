@@ -21,7 +21,7 @@ var getTitle = (err, success) => {
                 let index = utils.random(0, titleWords.length - 1);
                 if(!utils.isStopWord(titleWords[index].toLowerCase())) {
                     replaceDone = true;
-                    titleWords[index] = utils.findChotoGender(titleWords, index - 1);
+                    titleWords[wordIndex] = utils.replace(titleWords[wordIndex], utils.findChotoGender(titleWords, wordIndex - 1));
                     break;
                 }
                 i++;

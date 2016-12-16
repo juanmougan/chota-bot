@@ -28,9 +28,14 @@ var random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+var replace = (word, withWord) => {
+    return word.replace(/[A-Za-záéíóúÁÉÍÓÚ]+/, withWord);
+}
+
 module.exports = {
     isStopWord : isStopWord,
     isArticle : isArticle,
     findChotoGender : findChotoGender,
-    random : random
+    random : random,
+    replace : replace
 };

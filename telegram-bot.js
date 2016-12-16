@@ -27,7 +27,7 @@ bot.onText(/^\/chota (.*)/, function (msg, match) {
         let wordIndex = utils.random(0, titleWords.length - 1);
         if(!utils.isStopWord(titleWords[wordIndex].toLowerCase())) {
             found = true;
-            titleWords[wordIndex] = utils.findChotoGender(titleWords, wordIndex - 1);
+            titleWords[wordIndex] = utils.replace(titleWords[wordIndex], utils.findChotoGender(titleWords, wordIndex - 1));
             console.log(`Resonding /chota ${match[1]} to ${msg.chat.id} with : ${titleWords.join(" ")}`);
             bot.sendMessage(msg.chat.id, titleWords.join(" "));
         }
