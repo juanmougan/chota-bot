@@ -4,12 +4,27 @@ let movieFetcher = new MovieFetcher();
 
 let bot = new TelegramBot('311477110:AAEPYL1lz75Gh52NgJfVbhwYbNnR56rqtIM', { polling: true });
 
+
 bot.onText(/^\/movie$/, function (msg) {
     movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
 });
 
 bot.onText(/^\/chota$/, function (msg) {
     movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+});
+
+bot.onText(/^\/chota (.*)/, function (msg, match) {
+    let title = match[1];
+    let found = false;
+    let titleWords = title.split(" ");
+    do {
+        let wordIndex = movieFetcher.random(titleWords.length, 0);
+        if(movieFetcher.getStopwords().indexOf(titleWords[wordIndex].toLowerCase()) == -1) {
+            found = true
+            titleWords[wordIndex] = movieFetcher.getGender(titleWords, wordIndex);
+            bot.sendMessage(msg.chat.id, titleWords.join(" "));
+        }
+    } while(!found);
 });
 
 bot.onText(/\/ask (.+)/, function (msg) {
