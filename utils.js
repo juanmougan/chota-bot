@@ -5,15 +5,20 @@ var isStopWord = (word) => {
     return stopword.indexOf(word) != -1;
 };
 
+var getChotaFromArticle = (word) => {
+    let key = Object.keys(articles).find((k) => {return k == word.toLowerCase()})
+    return articles[key];
+}
+
 var isArticle = (word) => {
-    let article = Object.keys(articles).find((k) => {return k == word.toLowerCase()})
+    let article = getChotaFromArticle(word)
     return (article) ? true : false;
 };
 
 var findChotoGender = (titleWords, wordIndex) => {
     if(wordIndex < 0) { return "chota" }
     if(isArticle(titleWords[wordIndex])) {
-        return articles[titleWords[wordIndex]]
+        return getChotaFromArticle(titleWords[wordIndex])
     } else {
         return findChotoGender(titleWords, wordIndex - 1)
     }
