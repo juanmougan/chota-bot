@@ -1,16 +1,23 @@
 let TelegramBot = require('node-telegram-bot-api');
 let MovieFetcher = require("./movie-fetcher");
 let movieFetcher = new MovieFetcher();
+let utils = require('./utils');
 
 let bot = new TelegramBot('311477110:AAEPYL1lz75Gh52NgJfVbhwYbNnR56rqtIM', { polling: true });
 
 
 bot.onText(/^\/movie$/, function (msg) {
-    movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+    movieFetcher.getTitle((titleResult) => {
+        console.log(`Responding /movie to ${msg.chat.id} with : ${titleResult}`); 
+        bot.sendMessage(msg.chat.id, titleResult);
+    });
 });
 
 bot.onText(/^\/chota$/, function (msg) {
-    movieFetcher.getTitle((titleResult) => {bot.sendMessage(msg.chat.id, titleResult);})
+    movieFetcher.getTitle((titleResult) => {
+        console.log(`Responding /chota to ${msg.chat.id} with : ${titleResult}`);
+        bot.sendMessage(msg.chat.id, titleResult);
+    })
 });
 
 bot.onText(/^\/chota (.*)/, function (msg, match) {
@@ -18,29 +25,24 @@ bot.onText(/^\/chota (.*)/, function (msg, match) {
     let found = false;
     let titleWords = title.split(" ");
     do {
-        let wordIndex = movieFetcher.random(titleWords.length, 0);
-        if(movieFetcher.getStopwords().indexOf(titleWords[wordIndex].toLowerCase()) == -1) {
-            found = true
-            titleWords[wordIndex] = movieFetcher.findChotoGender(titleWords, wordIndex - 1);
+        let wordIndex = utils.random(0, titleWords.length - 1);
+        if(!utils.isStopWord(titleWords[wordIndex].toLowerCase())) {
+            found = true;
+            titleWords[wordIndex] = utils.findChotoGender(titleWords, wordIndex - 1);
+            console.log(`Resonding /chota ${match[1]} to ${msg.chat.id} with : ${titleWords.join(" ")}`);
             bot.sendMessage(msg.chat.id, titleWords.join(" "));
         }
     } while(!found);
 });
 
 bot.onText(/\/ask (.+)/, function (msg) {
+    console.log(`Responding 'Tu hermana!!! 'to ${msg.chat.id}`);
     bot.sendMessage(msg.chat.id, "Tu hermana!!!");
 });
 
 bot.onText(/\/echo (.+)/, function (msg, match) {
+    console.log(`Echo ${match[1]} to ${msg.chat.id}`);
     bot.sendMessage(msg.chat.id, match[1]);
 });
 
-bot.on('message', function (msg) {
-    if(/(porque|por\sque)/.test(msg.text)) {
-        bot.sendMessage(msg.chat.id, "Por que a tu hermana le gusta!!!")
-    }
-    
-    if(/(hay|va haber)\sdaily/.test(msg.text)) {
-        bot.sendMessage(msg.chat.id, "Se cancela la daily")
-    }
-});
+console.log("Bot in running...");

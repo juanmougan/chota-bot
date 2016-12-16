@@ -4,8 +4,8 @@ let movieFetcher = new MovieFetcher();
 require('./telegram-bot');
 
 let server = restify.createServer({
-	name: 'chota-bot',
-	version: '1.0.0'
+    name: 'chota-bot',
+    version: '1.0.0'
 });
 
 server.use(restify.acceptParser(server.acceptable));
@@ -21,5 +21,5 @@ server.get("/movie", (req, res, next) => {
 });
 
 server.listen(process.env.PORT || 8080, function() {
-	console.log('%s listening at %s', server.name, server.url);
+    console.log('%s listening at %s', server.name, server.url);
 });
