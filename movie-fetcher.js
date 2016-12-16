@@ -52,7 +52,7 @@ class MovieFetcher {
         if(article) {
             return this.articles[article]
         } else {
-            this.findChotoGender(titleWords, wordIndex - 1)
+            return this.findChotoGender(titleWords, wordIndex - 1)
         }
     };
     
