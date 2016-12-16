@@ -30,7 +30,7 @@ class MovieFetcher {
                     let index = this.random(0, titleWords.length);
                     if(this.stopword.indexOf(titleWords[index].toLowerCase()) == -1) {
                         replaceDone = true;
-                        titleWords[index] = query[Object.keys(query)[0]];
+                        titleWords[index] = this.findChotoGender(titleWords, index - 1);
                         break;
                     }
                     i++;
@@ -46,13 +46,13 @@ class MovieFetcher {
             .catch((err) => { console.error(err); res.send(500, err)})
     }
 
-    getGender(titleWords, wordIndex) {
-        if(wordIndex - 1 < 0) { return "chota" }
+    findChotoGender(titleWords, wordIndex) {
+        if(wordIndex < 0) { return "chota" }
         let article = Object.keys(this.articles).find((k) => { return k == titleWords[wordIndex] })
         if(article) {
-            return genderList[article]
+            return this.articles[article]
         } else {
-            getGender(titleWords, wordIndex - 1)
+            this.findChotoGender(titleWords, wordIndex - 1)
         }
     };
     
