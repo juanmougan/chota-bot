@@ -19,3 +19,13 @@ bot.onText(/\/ask (.+)/, function (msg) {
 bot.onText(/\/echo (.+)/, function (msg, match) {
     bot.sendMessage(msg.chat.id, match[1]);
 });
+
+bot.on('message', function (msg) {
+    if(/(porque|por\sque)/.test(msg.text)) {
+        bot.sendMessage(msg.chat.id, "Por que a tu hermana le gusta!!!")
+    }
+    
+    if(/(hay|va haber)\sdaily/.test(msg.text)) {
+        bot.sendMessage(msg.chat.id, "Se cancela la daily")
+    }
+});
