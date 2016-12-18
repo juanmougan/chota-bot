@@ -1,3 +1,5 @@
+'use strict';
+
 let restify = require('restify');
 let movieFetcher = require("./movie-fetcher");
 require('./telegram-bot');

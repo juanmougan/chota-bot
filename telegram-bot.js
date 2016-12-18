@@ -1,3 +1,5 @@
+'use strict';
+
 let TelegramBot = require('node-telegram-bot-api');
 let movieFetcher = require("./movie-fetcher");
 let utils = require('./utils');
