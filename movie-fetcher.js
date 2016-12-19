@@ -27,8 +27,8 @@ var getTitle = (err, success) => {
                 i++;
             }
             if(!replaceDone || titleWords.length == 1) { titleWords[0] = "Chota" }
-            if(/^(el|la|lo|los|las|se|le|les|un)\s(chota|choto|chotos|chotas)$/.test(titleWords.join(" ").toLowerCase())) {
-                getTitle(success)
+            if(/^(el|la|lo|los|las|se|le|les|un|de)\s(chota|choto|chotos|chotas)$/.test(titleWords.join(" ").toLowerCase())) {
+                getTitle(err,success)
             } else {
                 success(titleWords.join(" ") + ` - (${title})`);
             }
