@@ -1,6 +1,6 @@
 # Chota-BOT - Telegram BOT
 
-Bot that take a movie title and replace one word with "chota" to make it more funnier
+Bot that takes a movie title and replaces one word with "chota" to make it more funnier
 
 ## Install && Run
 
